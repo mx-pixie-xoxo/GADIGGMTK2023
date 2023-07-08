@@ -397,6 +397,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Factory
       objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648393, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: Destroyed
+      value: 
+      objectReference: {fileID: 21300000, guid: c6bf6d4a17ecec946a7f80dfe2abd1ad, type: 3}
+    - target: {fileID: 4485774928148648393, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: halfDestroyed
+      value: 
+      objectReference: {fileID: 21300000, guid: da704fc6a489ef349b36c205f1e33406, type: 3}
+    - target: {fileID: 4485774928148648394, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e1d71f89da2fbe644be9979758a92097, type: 3}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_Size.x
+      value: 3.70747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_Size.y
+      value: 2.7721345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.042241633
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.11569679
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485774928148648395, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4485774928148648397, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
       propertyPath: m_RootOrder
       value: 2
