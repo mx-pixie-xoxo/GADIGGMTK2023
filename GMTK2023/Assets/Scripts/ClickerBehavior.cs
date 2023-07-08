@@ -58,6 +58,7 @@ public class ClickerBehavior : MonoBehaviour
         }
 
         if (_attackTimeoutDelta >= 0) _attackTimeoutDelta -= Time.deltaTime;
+
     }
 
     private void MoveTo(GameObject target)
