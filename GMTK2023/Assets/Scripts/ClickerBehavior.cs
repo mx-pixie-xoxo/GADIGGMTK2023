@@ -21,6 +21,7 @@ public class ClickerBehavior : MonoBehaviour
     private float _attackTimeoutDelta;
     private float _playerFoundDelta;
     private float _moveTimeoutDelta;
+    
     private bool _inRange;
 
     public enum ClickerState : int {
@@ -95,6 +96,24 @@ public class ClickerBehavior : MonoBehaviour
         {
             _inRange = false;
         }
+
+        if (_inRange)
+        {
+            _playerFoundDelta -= Time.deltaTime;
+
+            if (_playerFoundDelta <= 0) 
+            {
+                _state = ClickerState.Attack;
+                SpawnFactory();
+            }
+        }
+    }
+
+    private void MoveTo(GameObject target)
+    {
+        float step = MoveSpeed * Time.deltaTime;
+
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
     }
 
     private void SpawnFactory()
@@ -103,6 +122,6 @@ public class ClickerBehavior : MonoBehaviour
         Vector3 spawnLoc = new Vector3(randomLoc.x, randomLoc.y, 0.0f) + transform.position;
         
         GameObject newFac = Instantiate(FactoryPrefab, spawnLoc, Quaternion.identity) as GameObject;
-    }
 
+    }
 }
