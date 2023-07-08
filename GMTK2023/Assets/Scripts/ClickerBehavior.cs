@@ -74,13 +74,6 @@ public class ClickerBehavior : MonoBehaviour
         }
     }
 
-    private void MoveTo(GameObject target)
-    {
-        float step = MoveSpeed * Time.deltaTime;
-
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
