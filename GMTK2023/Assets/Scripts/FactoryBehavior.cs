@@ -18,14 +18,12 @@ public class FactoryBehavior : MonoBehaviour
     public Sprite Destroyed;
     public AudioClip[] DamageSounds;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         CookieManager.Instance.FactoryCount++;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //update HP bar
