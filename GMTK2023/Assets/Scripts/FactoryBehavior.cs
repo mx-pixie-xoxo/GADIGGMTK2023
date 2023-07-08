@@ -22,6 +22,7 @@ public class FactoryBehavior : MonoBehaviour
 
 
     private void Start()
+
     {
         audioSource = GetComponent<AudioSource>();
         CookieManager.Instance.FactoryCount++;
