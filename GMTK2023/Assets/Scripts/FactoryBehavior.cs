@@ -11,6 +11,7 @@ public class FactoryBehavior : MonoBehaviour
     [SerializeField] private float increase = 0.5f; //How fast the health increases when you're not standing next to it
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool isTouchingPlayer;
+
     public GameObject hpSlider; //slider object on canvas
     public Sprite Untouched;
     public Sprite halfDestroyed;
@@ -21,6 +22,7 @@ public class FactoryBehavior : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        CookieManager.Instance.FactoryCount++;
     }
 
     // Update is called once per frame
@@ -46,6 +48,8 @@ public class FactoryBehavior : MonoBehaviour
         }
         else if (health <= 0f)//death
         {
+            // NOTE: probably change this to a call to some FactoryDestroyed function so that golden cookie can be spawned
+            CookieManager.Instance.FactoryCount--;
             Destroy(hpSlider);
             Destroy(gameObject);
         }
@@ -87,4 +91,5 @@ public class FactoryBehavior : MonoBehaviour
             isTouchingPlayer = false;
         }
     }
+
 }
