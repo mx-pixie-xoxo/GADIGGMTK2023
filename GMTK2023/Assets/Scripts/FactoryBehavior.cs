@@ -12,13 +12,17 @@ public class FactoryBehavior : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool isTouchingPlayer;
 
-    public GameObject hpSlider; //slider object on canvas
+    public FactoryHealth hpSlider; //slider object on canvas
     public Sprite Untouched;
     public Sprite halfDestroyed;
     public Sprite Destroyed;
     public AudioClip[] DamageSounds;
 
-    void Awake()
+    public GameObject FactoryHealthPrefab;
+
+
+    private void Start()
+
     {
         audioSource = GetComponent<AudioSource>();
         CookieManager.Instance.FactoryCount++;
@@ -27,7 +31,7 @@ public class FactoryBehavior : MonoBehaviour
     void Update()
     {
         //update HP bar
-        hpSlider.GetComponent<Slider>().value = health / maxhealth;
+        hpSlider.UpdateBar(health / maxhealth);
 
         //heals when not touching player
         if (!isTouchingPlayer && health < maxhealth)

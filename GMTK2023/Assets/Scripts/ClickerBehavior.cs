@@ -12,12 +12,16 @@ public class ClickerBehavior : MonoBehaviour
 
     // Attack stuff
     public float PlayerFoundTimeout = 0.5f;
-    public float AttackTimeout = 1.0f;
+    public float AttackTimeout = 10.0f;
     public float FactorySpawnRange = 5.0f;
+    public float MoveTimeout = 1.0f;
     public GameObject FactoryPrefab;
 
+    [SerializeField]
     private float _attackTimeoutDelta;
     private float _playerFoundDelta;
+    private float _moveTimeoutDelta;
+    
     private bool _inRange;
 
     public enum ClickerState : int {
@@ -50,9 +54,40 @@ public class ClickerBehavior : MonoBehaviour
                 MoveTo(_goldenCookie);
                 break;
             case ClickerState.Attack:
-                _attackTimeoutDelta -= Time.deltaTime;
-                if (_attackTimeoutDelta <= 0) _state = ClickerState.FollowPlayer;
+                _moveTimeoutDelta -= Time.deltaTime;
+                if (_moveTimeoutDelta <= 0) _state = ClickerState.FollowPlayer;
                 break;
+        }
+
+        if (_attackTimeoutDelta >= 0) _attackTimeoutDelta -= Time.deltaTime;
+
+        if (_inRange && _state == ClickerState.FollowPlayer)
+        {
+            _playerFoundDelta -= Time.deltaTime;
+
+            if (_playerFoundDelta <= 0 && _attackTimeoutDelta <= 0) 
+            {
+                _state = ClickerState.Attack;
+                _attackTimeoutDelta = AttackTimeout;
+                SpawnFactory();
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            _inRange = true;
+            _playerFoundDelta = PlayerFoundTimeout;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            _inRange = false;
         }
 
         if (_inRange)
@@ -74,30 +109,12 @@ public class ClickerBehavior : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            _inRange = true;
-            _playerFoundDelta = PlayerFoundTimeout;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            _inRange = false;
-        }
-    }
-
     private void SpawnFactory()
     {
         Vector2 randomLoc = Random.insideUnitCircle * FactorySpawnRange;
-
         Vector3 spawnLoc = new Vector3(randomLoc.x, randomLoc.y, 0.0f) + transform.position;
+        
+        GameObject newFac = Instantiate(FactoryPrefab, spawnLoc, Quaternion.identity) as GameObject;
 
-        // Instantiate(FactoryPrefab, spawnLoc, Quaternion.identity);   // need an hp bar first? idk
     }
-
 }
