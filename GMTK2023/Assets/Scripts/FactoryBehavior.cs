@@ -24,10 +24,15 @@ public class FactoryBehavior : MonoBehaviour
     public Animator animator;
 
 
+
     private void Start()
 
     {
+        //need to find the player object and then do the get component
+        //animator = GetComponent<Animator>();
+
         audioSource = GetComponent<AudioSource>();
+
         CookieManager.Instance.FactoryCount++;
     }
 
