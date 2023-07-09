@@ -8,7 +8,7 @@ public class ClickerBehavior : MonoBehaviour
 
     private ClickerState _state;
     private GameObject _player;
-    private GameObject _goldenCookie;
+    private GameObject _goldenCookie; 
     private GameObject[] _attackInstance;
 
     // Attack stuff
@@ -53,6 +53,12 @@ public class ClickerBehavior : MonoBehaviour
     private void Update()
     {
         Debug.Log(_state);
+        if (GameObject.FindGameObjectWithTag("GoldenCookie") != null)
+        {
+            _goldenCookie = GameObject.FindGameObjectWithTag("GoldenCookie");
+            _state = ClickerState.GoldenCookie;
+        }
+
         switch (_state)
         {
             case ClickerState.FollowPlayer:
@@ -65,7 +71,8 @@ public class ClickerBehavior : MonoBehaviour
                 }
                 break;
             case ClickerState.GoldenCookie:
-                MoveTo(_goldenCookie, FollowAnchor.Bottom);
+                if (GameObject.FindGameObjectWithTag("GoldenCookie") == null) _state = ClickerState.FollowPlayer; //if cookie doesn't exist, go back to following player
+                else MoveTo(_goldenCookie, FollowAnchor.Bottom); //chase cookie
                 break;
             case ClickerState.PrepAttack:
                 MoveTo(_player,FollowAnchor.Top);

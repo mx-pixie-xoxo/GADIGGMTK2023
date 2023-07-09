@@ -19,6 +19,6 @@ public class TitleScreenBehavior : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("HTestScene");
+        SceneManager.LoadScene("xavierTestScene");
     }
 }

@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0090524a069f5c94aa8f5607f0ed9e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldCookiePrefab: {fileID: 2270126612122475267, guid: 13d9b6c53ce4d984dae40e2c2a7264e1, type: 3}
   StartingCookies: 20
   FactoryCount: 0
   _cookieDisplay: {fileID: 0}
   CookieTimeout: 1
+  GoldCookieMaxTime: 1

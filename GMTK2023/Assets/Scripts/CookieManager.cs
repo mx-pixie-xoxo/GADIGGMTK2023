@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CookieManager : MonoBehaviour
 {
     public static CookieManager Instance { get; private set; }
-
+    public GameObject goldCookiePrefab;
     public int StartingCookies;
     public int FactoryCount;
 
@@ -18,6 +18,11 @@ public class CookieManager : MonoBehaviour
     [Tooltip("Time required to pass before making a new cookie in a factory")]
     public float CookieTimeout = 1.0f;
     private float _cookieTimeoutDelta;
+
+    //golden cookie timer stuff
+    [Tooltip("Time required to pass before spawning Golden Cookie")]
+    public float GoldCookieMaxTime = 1.0f;
+    private float _goldCookieTimeLeft = 1.0f;
 
     private void Awake()
     {
@@ -52,6 +57,14 @@ public class CookieManager : MonoBehaviour
             UpdateCount(_cookieCount + FactoryCount);
             _cookieTimeoutDelta = CookieTimeout;
         }
+
+        //spawn gold cookie
+        if (_goldCookieTimeLeft >= 0 && GameObject.FindGameObjectWithTag("GoldenCookie") == null) _goldCookieTimeLeft -= Time.deltaTime;
+        if (_goldCookieTimeLeft <= 0)
+        {
+            SpawnGoldenCookie();
+            _goldCookieTimeLeft = GoldCookieMaxTime;
+        }
     }
 
     public void UpdateCount(int value)
@@ -63,5 +76,14 @@ public class CookieManager : MonoBehaviour
     public int GetCount()
     {
         return _cookieCount;
+    }
+
+    public void SpawnGoldenCookie()
+    {
+        const int SPAWN_HEIGHT = 2;
+        const int SPAWN_WIDTH = 4;
+        var randomLocation = new Vector3(Random.Range(-SPAWN_WIDTH, SPAWN_WIDTH), Random.Range(-SPAWN_HEIGHT, SPAWN_HEIGHT), 0.0f);
+
+        GameObject newFac = Instantiate(goldCookiePrefab, randomLocation, Quaternion.identity);
     }
 }
