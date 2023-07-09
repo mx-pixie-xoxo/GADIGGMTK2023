@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     private bool isAbleToMove = true;
 
+
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
