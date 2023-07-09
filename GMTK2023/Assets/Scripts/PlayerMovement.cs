@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         hspeed = 0f;
         vspeed = 0f;
     }
@@ -25,7 +27,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float moveInputHori = Input.GetAxisRaw("Horizontal");
+        float moveInputVert = Input.GetAxisRaw("Vertical");
+
+        if ((moveInputHori == 0) && (moveInputVert == 0))
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else 
+        {
+            animator.SetBool("isWalking", true);
+        }
+
     }
 
     void FixedUpdate()
