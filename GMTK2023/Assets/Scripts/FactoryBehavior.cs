@@ -21,8 +21,6 @@ public class FactoryBehavior : MonoBehaviour
 
     public GameObject FactoryHealthPrefab;
 
-    public Animator animator;
-
 
 
     private void Start()
@@ -34,6 +32,7 @@ public class FactoryBehavior : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         CookieManager.Instance.FactoryCount++;
+
     }
 
     void Update()
@@ -100,7 +99,7 @@ public class FactoryBehavior : MonoBehaviour
         if (other.tag == "Player")
         {
             isTouchingPlayer = true;
-            animator.SetBool("isSwinging", true);
+            other.GetComponent<Animator>().SetBool("isSwinging", true);
         }
 
     }
@@ -110,7 +109,7 @@ public class FactoryBehavior : MonoBehaviour
         if (other.tag == "Player")
         {
             isTouchingPlayer = false;
-            animator.SetBool("isSwinging", false);
+            other.GetComponent<Animator>().SetBool("isSwinging", false);
         }
     }
 
