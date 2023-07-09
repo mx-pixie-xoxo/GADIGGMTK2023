@@ -1462,6 +1462,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grandma
       objectReference: {fileID: 0}
+    - target: {fileID: 63120404468545000, guid: 89aed4d1a1091c9419490b6f3ce1ff7f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1283142603}
+    - target: {fileID: 63120404468545000, guid: 89aed4d1a1091c9419490b6f3ce1ff7f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 63120404468545003, guid: 89aed4d1a1091c9419490b6f3ce1ff7f, type: 3}
       propertyPath: m_RootOrder
       value: 6
