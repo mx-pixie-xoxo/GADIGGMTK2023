@@ -21,7 +21,7 @@ public class FactoryBehavior : MonoBehaviour
 
     public GameObject FactoryHealthPrefab;
 
-
+    ParticleSystem CookieParticle;
 
     private void Start()
 
@@ -32,6 +32,8 @@ public class FactoryBehavior : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         CookieManager.Instance.FactoryCount++;
+
+        CookieParticle = GetComponent<ParticleSystem>();
 
     }
 
@@ -84,9 +86,13 @@ public class FactoryBehavior : MonoBehaviour
         {
             health -= decrease * Time.deltaTime;
 
+           
+
             //play a damage sound at random if one isn't already playing
             if (!audioSource.isPlaying)
             {
+                CookieParticle.Play();
+
                 int _randomNum = Random.Range(0, DamageSounds.Length);
                 audioSource.pitch = (Random.Range(0.8f, 1.2f));
                 audioSource.PlayOneShot(DamageSounds[_randomNum]);
@@ -106,6 +112,7 @@ public class FactoryBehavior : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+
         if (other.tag == "Player")
         {
             isTouchingPlayer = false;
