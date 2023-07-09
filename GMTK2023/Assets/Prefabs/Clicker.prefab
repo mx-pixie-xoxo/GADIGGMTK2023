@@ -97,4 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506ccd36af263344e91934b52c57aabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.8
+  MoveSpeed: 2.8
+  AttackTimeout: 10
+  FactorySpawnRange: 5
+  MoveTimeout: 1
+  FactoryPrefab: {fileID: 4485774928148648390, guid: 2481c0c44286fc2409986dd1cdfad566, type: 3}
+  AttackPrefab: {fileID: 8532748465090577232, guid: 51916134195a412418333b6ce56df47a, type: 3}
+  _attackTimeoutDelta: 0

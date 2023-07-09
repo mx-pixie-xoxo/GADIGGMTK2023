@@ -65,7 +65,7 @@ public class FactoryBehavior : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (CookieManager.Instance.FactoryCount == 0)
+        if (CookieManager.Instance.FactoryCount <= 0)
         {
             Debug.Log(CookieManager.Instance.FactoryCount.ToString());
             SceneManager.LoadScene("WinScene");

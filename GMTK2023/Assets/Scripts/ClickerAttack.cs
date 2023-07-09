@@ -35,6 +35,7 @@ public class ClickerAttack : MonoBehaviour
         if (other.tag == "Player")
         {
             Clicker.SpawnFactory();
+            Destroy(gameObject);
         }
     }
 }

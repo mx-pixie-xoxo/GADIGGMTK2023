@@ -70,16 +70,17 @@ public class ClickerBehavior : MonoBehaviour
 
     public void SpawnFactory()
     {
-        Vector2 randomLoc = Random.insideUnitCircle * FactorySpawnRange;
-        Vector3 spawnLoc = new Vector3(randomLoc.x, randomLoc.y, 0.0f) + transform.position;
+        const int SPAWN_HEIGHT = 4;
+        const int SPAWN_WIDTH = 8;
+        var randomLocation = new Vector3(Random.Range(-SPAWN_WIDTH,SPAWN_WIDTH), Random.Range(-SPAWN_HEIGHT, SPAWN_HEIGHT),0.0f);
         
-        GameObject newFac = Instantiate(FactoryPrefab, spawnLoc, Quaternion.identity) as GameObject;
+        GameObject newFac = Instantiate(FactoryPrefab, randomLocation, Quaternion.identity);
     }
 
     private void ClickAttack()
     {   
         // spawn click attack
-        GameObject spawning = Instantiate(AttackPrefab, transform.position, Quaternion.identity) as GameObject;
+        GameObject spawning = Instantiate(AttackPrefab, transform.position, Quaternion.identity);
         ClickerAttack attack = spawning.GetComponent<ClickerAttack>();
         attack.Target = transform.position;
         attack.Clicker = this;
