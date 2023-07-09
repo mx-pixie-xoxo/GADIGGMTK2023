@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingCookies: 20
-  FactoryCount: 0
+  FactoryCount: 1
   _cookieDisplay: {fileID: 211935079}
   CookieTimeout: 1
 --- !u!4 &1843438149
