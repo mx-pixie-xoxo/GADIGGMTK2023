@@ -21,6 +21,8 @@ public class FactoryBehavior : MonoBehaviour
 
     public GameObject FactoryHealthPrefab;
 
+    public Animator animator;
+
 
     private void Start()
 
@@ -93,7 +95,9 @@ public class FactoryBehavior : MonoBehaviour
         if (other.tag == "Player")
         {
             isTouchingPlayer = true;
+            animator.SetBool("isSwinging", true);
         }
+
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -101,6 +105,7 @@ public class FactoryBehavior : MonoBehaviour
         if (other.tag == "Player")
         {
             isTouchingPlayer = false;
+            animator.SetBool("isSwinging", false);
         }
     }
 

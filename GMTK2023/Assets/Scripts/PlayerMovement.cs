@@ -12,6 +12,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     private bool isAbleToMove = true;
 
+/**
+    bool isWalking = false; 
+    bool isSwinging = false; 
+    bool isHurt = false;
+    bool isRolling = false;
+*/
+
+
 
     public Animator animator;
 
@@ -27,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //walking animation is currently being based off of  axis 
         float moveInputHori = Input.GetAxisRaw("Horizontal");
         float moveInputVert = Input.GetAxisRaw("Vertical");
 
@@ -39,6 +48,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isWalking", true);
         }
 
+        /**
+        for testing the transitions to swing
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            animator.SetBool("isSwinging", true);
+        }
+        else {
+            animator.SetBool("isSwinging", false);
+        }
+        **/
     }
 
     void FixedUpdate()
