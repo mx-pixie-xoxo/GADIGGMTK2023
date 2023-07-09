@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FactoryBehavior : MonoBehaviour
 {
@@ -62,6 +63,15 @@ public class FactoryBehavior : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        if (CookieManager.Instance.FactoryCount == 0)
+        {
+            Debug.Log(CookieManager.Instance.FactoryCount.ToString());
+            SceneManager.LoadScene("WinScene");
+
+        }
+    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player" && health > 0.0f)
