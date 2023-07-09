@@ -84,9 +84,14 @@ public class FactoryBehavior : MonoBehaviour
     {
         if (other.tag == "Player" && health > 0.0f)
         {
-            health -= decrease * Time.deltaTime;
+            if (other.GetComponent<PlayerMovement>().cookiePowerTimeLeft > 0.0f)
+            {
+                health -= (decrease * 2) * Time.deltaTime;
+            }
+            else health -= decrease * Time.deltaTime;
 
-           
+
+
 
             //play a damage sound at random if one isn't already playing
             if (!audioSource.isPlaying)

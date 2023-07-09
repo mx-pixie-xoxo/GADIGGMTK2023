@@ -11,12 +11,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dec = 26f; //Deceleration
     [SerializeField] private Rigidbody2D rb;
     private bool isAbleToMove = true;
+    public float cookiePowerTimeMax = 10.0f;
+    public float cookiePowerTimeLeft = 0.0f;
+    public AudioSource audioSource;
 
-/**
-    bool isWalking = false; 
-    bool isSwinging = false; 
-    bool isHurt = false;
-    bool isRolling = false;
+    /**
+        bool isWalking = false; 
+        bool isSwinging = false; 
+        bool isHurt = false;
+        bool isRolling = false;
 */
 
 
@@ -27,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
         hspeed = 0f;
         vspeed = 0f;
     }
@@ -47,22 +50,13 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
         }
-
-        /**
-        for testing the transitions to swing
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            animator.SetBool("isSwinging", true);
-        }
-        else {
-            animator.SetBool("isSwinging", false);
-        }
-        **/
     }
 
     void FixedUpdate()
     {
         MovePlayer();
     }
+
     private void MovePlayer()
     {
         if (isAbleToMove)
@@ -158,6 +152,16 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = new Vector3(0, 0);
+        }
+    }
+
+    void OnTriggerEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "GoldenCookie")
+        {
+            cookiePowerTimeLeft = cookiePowerTimeMax;
+            audioSource.Play();
+            Destroy(other.gameObject);
         }
     }
 }

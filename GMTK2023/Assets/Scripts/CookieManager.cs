@@ -21,8 +21,8 @@ public class CookieManager : MonoBehaviour
 
     //golden cookie timer stuff
     [Tooltip("Time required to pass before spawning Golden Cookie")]
-    public float GoldCookieMaxTime = 1.0f;
-    private float _goldCookieTimeLeft = 1.0f;
+    public float GoldCookieMaxTime = 15.0f;
+    private float _goldCookieTimeLeft = 15.0f;
 
     private void Awake()
     {
@@ -84,6 +84,6 @@ public class CookieManager : MonoBehaviour
         const int SPAWN_WIDTH = 4;
         var randomLocation = new Vector3(Random.Range(-SPAWN_WIDTH, SPAWN_WIDTH), Random.Range(-SPAWN_HEIGHT, SPAWN_HEIGHT), 0.0f);
 
-        GameObject newFac = Instantiate(goldCookiePrefab, randomLocation, Quaternion.identity);
+       // GameObject newFac = Instantiate(goldCookiePrefab, randomLocation, Quaternion.identity);
     }
 }

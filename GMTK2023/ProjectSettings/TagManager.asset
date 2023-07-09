@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MouseAttack
   - GoldenCookie
+  - Factory
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,8 @@ public class ClickerBehavior : MonoBehaviour
     private GameObject _player;
     private GameObject _goldenCookie; 
     private GameObject[] _attackInstance;
+    public AudioClip audioClip;
+    public AudioSource audioSource;
 
     // Attack stuff
     public float AttackTimeout = 5.0f;
@@ -44,7 +46,8 @@ public class ClickerBehavior : MonoBehaviour
         {
             _player = GameObject.FindGameObjectWithTag("Player");
         }
-
+        audioClip = GetComponent<AudioClip>();
+        audioSource = GetComponent<AudioSource>();
         _state = ClickerState.FollowPlayer;
         _attackTimeoutDelta = AttackTimeout;
     }
@@ -53,12 +56,6 @@ public class ClickerBehavior : MonoBehaviour
     private void Update()
     {
         Debug.Log(_state);
-        if (GameObject.FindGameObjectWithTag("GoldenCookie") != null)
-        {
-            _goldenCookie = GameObject.FindGameObjectWithTag("GoldenCookie");
-            _state = ClickerState.GoldenCookie;
-        }
-
         switch (_state)
         {
             case ClickerState.FollowPlayer:
@@ -152,6 +149,14 @@ public class ClickerBehavior : MonoBehaviour
         _attackTimeoutDelta = AttackTimeout;
         _moveTimeoutDelta = MoveTimeout;
         _state = ClickerState.Attack;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "GoldenCookie")
+        {
+            Destroy(collision);
+        }
     }
 
 }
